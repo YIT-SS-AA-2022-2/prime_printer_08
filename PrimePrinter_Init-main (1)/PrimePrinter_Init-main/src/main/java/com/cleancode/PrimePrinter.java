@@ -8,23 +8,19 @@ public class PrimePrinter {
         final int CC = 4;
         final int ORDMAX = 30;
         int P[] = new int[M+1];
-        int PAGENUMBER;
-        int PAGEOFFSET;
+        int PAGENUMBER=1;
+        int PAGEOFFSET=1;
         int ROWOFFSET;
         int C;
-        int J;
-        int K;
+        int J=1;
+        int K=1;
         boolean JPRIME;
-        int ORD;
-        int SQUARE;
+        int ORD=2;
+        int SQUARE=9;
         int N=0;
         int MULT[] = new int[ORDMAX+1];
 
-        J=1;
-        K=1;
         P[1] = 2;
-        ORD = 2;
-        SQUARE = 9;
 
         while (K < M) {
             do {
@@ -47,8 +43,7 @@ public class PrimePrinter {
             K++;
             P[K]=J;
         }
-        PAGENUMBER = 1;
-        PAGEOFFSET = 1;
+
         while (PAGEOFFSET <= M) {
             System.out.print("The First ");
             System.out.print(Integer.toString(M));
