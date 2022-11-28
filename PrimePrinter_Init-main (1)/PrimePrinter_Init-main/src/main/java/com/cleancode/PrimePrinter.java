@@ -5,43 +5,56 @@ public class PrimePrinter {
         //start!!
 
         int Primes[] = new int[getLinePageRowCol(1000, 1)];
-        int PAGENUMBER;
-        int PAGEOFFSET;
-        int ROWOFFSET;
-        int column;
+        int multiples[] = new int[getLinePageRowCol(30, 1)];
+        primePrinterPram();
         int canDidate=1;
         int PrimeIndex=1;
-        boolean possiblyPrime;
         int ORD = 2;
         int SQUARE = 9;
         int N=0;
-        int multiples[] = new int[getLinePageRowCol(30, 1)];
-
-
         Primes[1] = 2;
-        // ??
 
 
+        PrimePrinterSt(Primes, multiples, canDidate, PrimeIndex, ORD, SQUARE);
+        PAGENUMBER = 1;
+        PAGEOFFSET = 1;
+        pageResultprint(1000, 50, 4, Primes, PAGENUMBER, PAGEOFFSET);
+
+    }
+
+    private static void PrimePrinterSt(int[] Primes, int[] multiples, int canDidate, int PrimeIndex, int ORD, int SQUARE) {
         while (PrimeIndex < 1000) {
             do {
                 canDidate += 2;
                 if( canDidate == SQUARE) {
                     ORD++;
-                    SQUARE= getColumn(Primes[ORD], Primes[ORD]);
-                    multiples[ORD-1]=canDidate;
+                    SQUARE = getColumn(Primes[ORD], Primes[ORD]);
+                    multiples[ORD -1]= canDidate;
                 }
-                N=2;
-                possiblyPrime = primeTruePoss(Primes, canDidate, ORD, N, multiples);
+                pPTrue(Primes, multiples, canDidate, ORD);
             } while (!possiblyPrime);
-            PrimeIndex++;
-            Primes[PrimeIndex]=canDidate;
+            PrimeIndex = getPrimeIndex(PrimeIndex, Primes[PrimeIndex], canDidate);
         }
-        PAGENUMBER = 1;
-        PAGEOFFSET = 1;
+    }
 
+    private static void pPTrue(int[] Primes, int[] multiples, int canDidate, int ORD) {
+        int N;
+        N=2;
+        possiblyPrime = primeTruePoss(Primes, canDidate, ORD, N, multiples);
+    }
 
-        pageResultprint(1000, 50, 4, Primes, PAGENUMBER, PAGEOFFSET);
+    private static int getPrimeIndex(int PrimeIndex, int Primes, int canDidate) {
+        PrimeIndex++;
+        Primes = canDidate;
+        return PrimeIndex;
+    }
 
+    private static class primePrinterPram{
+        int PAGENUMBER;
+        int PAGEOFFSET;
+        int ROWOFFSET;
+        int column;
+        boolean possiblyPrime;
     }
 
     private static boolean primeTruePoss(int[] Primes, int canDidate, int ORD, int N, int[] multiples) {
