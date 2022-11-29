@@ -1,70 +1,66 @@
-package com.cleancode;
-
 public class PrimePrinter {
     public static void main(String[] args) {
-        //start!!
-        final int M = 1000;
-        final int RR = 50;
-        final int CC = 4;
+        final int numberOfPrimes = 1000;
+        int primes[];
+
+        primes = findPrimeNumbers(numberOfPrimes);
+
+        PrimeNumberPrinter primeNumberPrinter = new PrimeNumberPrinter(primes);
+        primeNumberPrinter.printPrimeNumbers();
+    }
+
+    private static int[] findPrimeNumbers(int numberOfPrimes) {
+        int primes[] = new int[numberOfPrimes + 1];
+        primes[1] = 2;
+
         final int ORDMAX = 30;
-        int P[] = new int[M+1];
-        int PAGENUMBER;
-        int PAGEOFFSET;
-        int ROWOFFSET;
-        int C;
-        int J;
-        int K;
-        boolean JPRIME;
-        int ORD;
-        int SQUARE;
-        int N=0;
-        int MULT[] = new int[ORDMAX+1];
+        int multiples[] = new int[ORDMAX + 1];
 
-        J=1;
-        K=1;
-        P[1] = 2;
-        ORD = 2;
-        SQUARE = 9;
 
-        while (K < M) {
+        int candidate;
+        candidate = 1;
+
+        int primeIndex;
+        primeIndex = 1;
+
+        int ord;
+        ord = 2;
+
+        int square;
+        square = 9;
+
+
+        while (primeIndex < numberOfPrimes) {
+            boolean possiblyPrime;
             do {
-                J += 2;
-                if( J == SQUARE) {
-                    ORD++;
-                    SQUARE=P[ORD]*P[ORD];
-                    MULT[ORD-1]=J;
+                candidate += 2;
+                if (candidate == square) {
+                    ord++;
+                    square = primes[ord] * primes[ord];
+                    multiples[ord - 1] = candidate;
                 }
-                N=2;
-                JPRIME=true;
-                while (N < ORD && JPRIME) {
-                    while (MULT[N]<J)
-                        MULT[N] += P[N] + P[N];
-                    if (MULT[N] == J)
-                        JPRIME=false;
-                    N++;
-                }
-            } while (!JPRIME);
-            K++;
-            P[K]=J;
-        }
-        PAGENUMBER = 1;
-        PAGEOFFSET = 1;
-        while (PAGEOFFSET <= M) {
-            System.out.print("The First ");
-            System.out.print(Integer.toString(M));
-            System.out.print(" Prime Numbers === Page ");
-            System.out.print(Integer.toString(PAGENUMBER));
-            System.out.println("\n");
-            for (ROWOFFSET=PAGEOFFSET; ROWOFFSET <= PAGEOFFSET+RR-1; ROWOFFSET++) {
-                for (C = 0; C <= CC - 1; C++)
-                    if (ROWOFFSET + C * RR <= M)
-                        System.out.printf("%10d", P[ROWOFFSET + C * RR]);
-                System.out.println();
-            }
-            System.out.println("\f");
-            PAGENUMBER++;
-            PAGEOFFSET += RR*CC;
 
+                int n = 2;
+                possiblyPrime = true;
+                while (n < ord && possiblyPrime) {
+                    while (multiples[n] < candidate)
+                        @ @ -46, 16 + 54, 27 @@public static void main (String[]args){
+                        primeIndex++;
+                        primes[primeIndex] = candidate;
+                    }
+                    return primes;
+                }
+            }
         }
+    }
+
+
+
+    private static void printPageHead(int numberOfPrimes, int pagenumber) {
+        System.out.print("The First ");
+        System.out.print(numberOfPrimes);
+        System.out.print(" Prime Numbers === Page ");
+        System.out.print(pagenumber);
+        System.out.println("\n");
     }
 }
